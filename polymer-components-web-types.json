@@ -1,0 +1,829 @@
+{
+    "$schema": "http://json.schemastore.org/web-types",
+    "name": "polymer-components-web-types",
+    "version": "0.1.0",
+    "framework": "@polymer/polymer",
+    "default-icon": "icon/polymer.svg",
+    "description-markup": "markdown",
+    "contributions": {
+        "html": {
+            "elements": [
+                {
+                    "name": "array-selector",
+                    "description": "Element implementing the `ArraySelector` mixin, which records\ndynamic associations between item paths in a master `items` array and a\n`selected` array such that path changes to the master array (at the host)\nelement or elsewhere via data-binding) are correctly propagated to items\nin the selected array and vice-versa.\n\nThe `items` property accepts an array of user data, and via the\n`select(item)` and `deselect(item)` API, updates the `selected` property\nwhich may be bound to other parts of the application, and any changes to\nsub-fields of `selected` item(s) will be kept in sync with items in the\n`items` array.  When `multi` is false, `selected` is a property\nrepresenting the last selected item.  When `multi` is true, `selected`\nis an array of multiply selected items.\n\nExample:\n\n```js\nimport {PolymerElement} from '@polymer/polymer';\nimport '@polymer/polymer/lib/elements/array-selector.js';\n\nclass EmployeeList extends PolymerElement {\n  static get _template() {\n    return html`\n        <div> Employee list: </div>\n        <dom-repeat id=\"employeeList\" items=\"{{employees}}\">\n          <template>\n            <div>First name: <span>{{item.first}}</span></div>\n              <div>Last name: <span>{{item.last}}</span></div>\n              <button on-click=\"toggleSelection\">Select</button>\n          </template>\n        </dom-repeat>\n\n        <array-selector id=\"selector\"\n                        items=\"{{employees}}\"\n                        selected=\"{{selected}}\"\n                        multi toggle></array-selector>\n\n        <div> Selected employees: </div>\n        <dom-repeat items=\"{{selected}}\">\n          <template>\n            <div>First name: <span>{{item.first}}</span></div>\n            <div>Last name: <span>{{item.last}}</span></div>\n          </template>\n        </dom-repeat>`;\n  }\n  static get is() { return 'employee-list'; }\n  static get properties() {\n    return {\n      employees: {\n        value() {\n          return [\n            {first: 'Bob', last: 'Smith'},\n            {first: 'Sally', last: 'Johnson'},\n            ...\n          ];\n        }\n      }\n    };\n  }\n  toggleSelection(e) {\n    const item = this.$.employeeList.itemForElement(e.target);\n    this.$.selector.select(item);\n  }\n}\n```",
+                    "source": {
+                        "module": "@polymer/polymer/lib/elements/array-selector.js",
+                        "symbol": "ArraySelector"
+                    },
+                    "attributes": [
+                        {
+                            "name": "items",
+                            "required": false,
+                            "value": {
+                                "type": "array",
+                                "required": true
+                            },
+                            "description": "An array containing items from which selection will be made."
+                        },
+                        {
+                            "name": "multi",
+                            "required": false,
+                            "value": {
+                                "type": "boolean",
+                                "required": false,
+                                "default": "false"
+                            },
+                            "description": "When `true`, multiple items may be selected at once (in this case,\n`selected` is an array of currently selected items).  When `false`,\nonly one item may be selected at a time."
+                        },
+                        {
+                            "name": "selected",
+                            "required": false,
+                            "value": {
+                                "type": "?Object|?Array<!Object>",
+                                "required": true
+                            },
+                            "description": "When `multi` is true, this is an array that contains any selected.\nWhen `multi` is false, this is the currently selected item, or `null`\nif no item is selected."
+                        },
+                        {
+                            "name": "selected-item",
+                            "required": false,
+                            "value": {
+                                "type": "?Object",
+                                "required": true
+                            },
+                            "description": "When `multi` is false, this is the currently selected item, or `null`\nif no item is selected."
+                        },
+                        {
+                            "name": "toggle",
+                            "required": false,
+                            "value": {
+                                "type": "boolean",
+                                "required": false,
+                                "default": "false"
+                            },
+                            "description": "When `true`, calling `select` on an item that is already selected\nwill deselect the item."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "items",
+                                "required": false,
+                                "value": {
+                                    "type": "array",
+                                    "required": true
+                                },
+                                "description": "An array containing items from which selection will be made."
+                            },
+                            {
+                                "name": "multi",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": "false"
+                                },
+                                "description": "When `true`, multiple items may be selected at once (in this case,\n`selected` is an array of currently selected items).  When `false`,\nonly one item may be selected at a time."
+                            },
+                            {
+                                "name": "selected",
+                                "required": false,
+                                "value": {
+                                    "type": "?Object|?Array<!Object>",
+                                    "required": true
+                                },
+                                "description": "When `multi` is true, this is an array that contains any selected.\nWhen `multi` is false, this is the currently selected item, or `null`\nif no item is selected."
+                            },
+                            {
+                                "name": "selectedItem",
+                                "required": false,
+                                "value": {
+                                    "type": "?Object",
+                                    "required": true
+                                },
+                                "description": "When `multi` is false, this is the currently selected item, or `null`\nif no item is selected."
+                            },
+                            {
+                                "name": "toggle",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": "false"
+                                },
+                                "description": "When `true`, calling `select` on an item that is already selected\nwill deselect the item."
+                            },
+                            {
+                                "name": "__lastItems",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__lastMulti",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__selectedMap",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "_template",
+                                "required": false,
+                                "value": {
+                                    "type": [
+                                        "HTMLTemplateElement",
+                                        "null"
+                                    ],
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "_importPath",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "rootPath",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "importPath",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "root",
+                                "required": false,
+                                "value": {
+                                    "type": [
+                                        "HTMLElement",
+                                        "StampedTemplate",
+                                        "ShadowRoot",
+                                        "null"
+                                    ],
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "$",
+                                "required": false,
+                                "value": {
+                                    "type": "{ [key: string]: Element; }",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "_overrideLegacyUndefined",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "PROPERTY_EFFECT_TYPES",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "custom-style",
+                    "description": "Custom element for defining styles in the main document that can take\nadvantage of [shady DOM](https://github.com/webcomponents/shadycss) shims\nfor style encapsulation, custom properties, and custom mixins.\n\n- Document styles defined in a `<custom-style>` are shimmed to ensure they\n  do not leak into local DOM when running on browsers without native\n  Shadow DOM.\n- Custom properties can be defined in a `<custom-style>`. Use the `html` selector\n  to define custom properties that apply to all custom elements.\n- Custom mixins can be defined in a `<custom-style>`, if you import the optional\n  [apply shim](https://github.com/webcomponents/shadycss#about-applyshim)\n  (`shadycss/apply-shim.html`).\n\nTo use:\n\n- Import `custom-style.html`.\n- Place a `<custom-style>` element in the main document, wrapping an inline `<style>` tag that\n  contains the CSS rules you want to shim.\n\nFor example:\n\n```html\n<!-- import apply shim--only required if using mixins -->\n<link rel=\"import\" href=\"bower_components/shadycss/apply-shim.html\">\n<!-- import custom-style element -->\n<link rel=\"import\" href=\"bower_components/polymer/lib/elements/custom-style.html\">\n\n<custom-style>\n  <style>\n    html {\n      --custom-color: blue;\n      --custom-mixin: {\n        font-weight: bold;\n        color: red;\n      };\n    }\n  </style>\n</custom-style>\n```",
+                    "source": {
+                        "module": "@polymer/polymer/lib/elements/custom-style.js",
+                        "symbol": "CustomStyle"
+                    },
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "_style",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "dom-bind",
+                    "description": "Custom element to allow using Polymer's template features (data binding,\ndeclarative event listeners, etc.) in the main document without defining\na new custom element.\n\n`<template>` tags utilizing bindings may be wrapped with the `<dom-bind>`\nelement, which will immediately stamp the wrapped template into the main\ndocument and bind elements to the `dom-bind` element itself as the\nbinding scope.",
+                    "source": {
+                        "module": "@polymer/polymer/lib/elements/dom-bind.js",
+                        "symbol": "DomBind"
+                    },
+                    "attributes": [
+                        {
+                            "name": "mutable-data",
+                            "required": false,
+                            "value": {
+                                "type": [],
+                                "required": true
+                            }
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "root",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "$",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__children",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "mutableData",
+                                "required": false,
+                                "value": {
+                                    "type": [
+                                        "boolean",
+                                        "null",
+                                        "undefined"
+                                    ],
+                                    "required": true
+                                },
+                                "description": "Instance-level flag for configuring the dirty-checking strategy\nfor this element.  When true, Objects and Arrays will skip dirty\nchecking, otherwise strict equality checking will be used."
+                            },
+                            {
+                                "name": "_overrideLegacyUndefined",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "PROPERTY_EFFECT_TYPES",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true
+                                }
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "dom-change"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "dom-if",
+                    "description": "The `<dom-if>` element will stamp a light-dom `<template>` child when\nthe `if` property becomes truthy, and the template can use Polymer\ndata-binding and declarative event features when used in the context of\na Polymer element's template.\n\nWhen `if` becomes falsy, the stamped content is hidden but not\nremoved from dom. When `if` subsequently becomes truthy again, the content\nis simply re-shown. This approach is used due to its favorable performance\ncharacteristics: the expense of creating template content is paid only\nonce and lazily.\n\nSet the `restamp` property to true to force the stamped content to be\ncreated / destroyed when the `if` condition changes.",
+                    "source": {
+                        "module": "@polymer/polymer/lib/elements/dom-if.js",
+                        "symbol": "DomIf"
+                    }
+                },
+                {
+                    "name": "dom-module",
+                    "description": "The `dom-module` element registers the dom it contains to the name given\nby the module's id attribute. It provides a unified database of dom\naccessible via its static `import` API.\n\nA key use case of `dom-module` is for providing custom element `<template>`s\nvia HTML imports that are parsed by the native HTML parser, that can be\nrelocated during a bundling pass and still looked up by `id`.\n\nExample:\n\n    <dom-module id=\"foo\">\n      <img src=\"stuff.png\">\n    </dom-module>\n\nThen in code in some other location that cannot access the dom-module above\n\n    let img = customElements.get('dom-module').import('foo', 'img');",
+                    "source": {
+                        "module": "@polymer/polymer/lib/elements/dom-module.js",
+                        "symbol": "DomModule"
+                    },
+                    "attributes": [
+                        {
+                            "name": "id",
+                            "required": false,
+                            "value": {
+                                "type": [],
+                                "required": true
+                            }
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "assetpath",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "description": "The absolute URL of the original location of this `dom-module`.\n\nThis value will differ from this element's `ownerDocument` in the\nfollowing ways:\n- Takes into account any `assetpath` attribute added during bundling\n  to indicate the original location relative to the bundled location\n- Uses the HTMLImports polyfill's `importForElement` API to ensure\n  the path is relative to the import document's location since\n  `ownerDocument` is not currently polyfilled"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "dom-repeat",
+                    "description": "The `<dom-repeat>` element will automatically stamp and binds one instance\nof template content to each object in a user-provided array.\n`dom-repeat` accepts an `items` property, and one instance of the template\nis stamped for each item into the DOM at the location of the `dom-repeat`\nelement.  The `item` property will be set on each instance's binding\nscope, thus templates should bind to sub-properties of `item`.\n\nExample:\n\n```html\n<dom-module id=\"employee-list\">\n\n  <template>\n\n    <div> Employee list: </div>\n    <dom-repeat items=\"{{employees}}\">\n      <template>\n        <div>First name: <span>{{item.first}}</span></div>\n        <div>Last name: <span>{{item.last}}</span></div>\n      </template>\n    </dom-repeat>\n\n  </template>\n\n</dom-module>\n```\n\nWith the following custom element definition:\n\n```js\nclass EmployeeList extends PolymerElement {\n  static get is() { return 'employee-list'; }\n  static get properties() {\n    return {\n      employees: {\n        value() {\n          return [\n            {first: 'Bob', last: 'Smith'},\n            {first: 'Sally', last: 'Johnson'},\n            ...\n          ];\n        }\n      }\n    };\n  }\n}\n```\n\nNotifications for changes to items sub-properties will be forwarded to template\ninstances, which will update via the normal structured data notification system.\n\nMutations to the `items` array itself should be made using the Array\nmutation API's on the PropertyEffects mixin (`push`, `pop`, `splice`,\n`shift`, `unshift`), and template instances will be kept in sync with the\ndata in the array.\n\nEvents caught by event handlers within the `dom-repeat` template will be\ndecorated with a `model` property, which represents the binding scope for\neach template instance.  The model should be used to manipulate data on the\ninstance, for example `event.model.set('item.checked', true);`.\n\nAlternatively, the model for a template instance for an element stamped by\na `dom-repeat` can be obtained using the `modelForElement` API on the\n`dom-repeat` that stamped it, for example\n`this.$.domRepeat.modelForElement(event.target).set('item.checked', true);`.\nThis may be useful for manipulating instance data of event targets obtained\nby event handlers on parents of the `dom-repeat` (event delegation).\n\nA view-specific filter/sort may be applied to each `dom-repeat` by supplying a\n`filter` and/or `sort` property.  This may be a string that names a function on\nthe host, or a function may be assigned to the property directly.  The functions\nshould implemented following the standard `Array` filter/sort API.\n\nIn order to re-run the filter or sort functions based on changes to sub-fields\nof `items`, the `observe` property may be set as a space-separated list of\n`item` sub-fields that should cause a re-filter/sort when modified.  If\nthe filter or sort function depends on properties not contained in `items`,\nthe user should observe changes to those properties and call `render` to update\nthe view based on the dependency change.\n\nFor example, for an `dom-repeat` with a filter of the following:\n\n```js\nisEngineer(item) {\n  return item.type == 'engineer' || item.manager.type == 'engineer';\n}\n```\n\nThen the `observe` property should be configured as follows:\n\n```html\n<dom-repeat items=\"{{employees}}\" filter=\"isEngineer\" observe=\"type manager.type\">\n```",
+                    "source": {
+                        "module": "@polymer/polymer/lib/elements/dom-repeat.js",
+                        "symbol": "DomRepeat"
+                    },
+                    "attributes": [
+                        {
+                            "name": "items",
+                            "required": false,
+                            "value": {
+                                "type": "array",
+                                "required": true
+                            },
+                            "description": "An array containing items determining how many instances of the template\nto stamp and that that each template instance should bind to."
+                        },
+                        {
+                            "name": "as",
+                            "required": false,
+                            "value": {
+                                "type": "string",
+                                "required": true,
+                                "default": "\"item\""
+                            },
+                            "description": "The name of the variable to add to the binding scope for the array\nelement associated with a given template instance."
+                        },
+                        {
+                            "name": "index-as",
+                            "required": false,
+                            "value": {
+                                "type": "string",
+                                "required": true,
+                                "default": "\"index\""
+                            },
+                            "description": "The name of the variable to add to the binding scope with the index\nof the instance in the sorted and filtered list of rendered items.\nNote, for the index in the `this.items` array, use the value of the\n`itemsIndexAs` property."
+                        },
+                        {
+                            "name": "items-index-as",
+                            "required": false,
+                            "value": {
+                                "type": "string",
+                                "required": true,
+                                "default": "\"itemsIndex\""
+                            },
+                            "description": "The name of the variable to add to the binding scope with the index\nof the instance in the `this.items` array. Note, for the index of\nthis instance in the sorted and filtered list of rendered items,\nuse the value of the `indexAs` property."
+                        },
+                        {
+                            "name": "sort",
+                            "required": false,
+                            "value": {
+                                "type": [],
+                                "required": true
+                            },
+                            "description": "A function that should determine the sort order of the items.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.sort`.\nUsing a sort function has no effect on the underlying `items` array."
+                        },
+                        {
+                            "name": "filter",
+                            "required": false,
+                            "value": {
+                                "type": [],
+                                "required": true
+                            },
+                            "description": "A function that can be used to filter items out of the view.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.filter`.\nUsing a filter function has no effect on the underlying `items` array."
+                        },
+                        {
+                            "name": "observe",
+                            "required": false,
+                            "value": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "description": "When using a `filter` or `sort` function, the `observe` property\nshould be set to a space-separated list of the names of item\nsub-fields that should trigger a re-sort or re-filter when changed.\nThese should generally be fields of `item` that the sort or filter\nfunction depends on."
+                        },
+                        {
+                            "name": "delay",
+                            "required": false,
+                            "value": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "description": "When using a `filter` or `sort` function, the `delay` property\ndetermines a debounce time in ms after a change to observed item\nproperties that must pass before the filter or sort is re-run.\nThis is useful in rate-limiting shuffling of the view when\nitem changes may be frequent."
+                        },
+                        {
+                            "name": "rendered-item-count",
+                            "required": false,
+                            "value": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "description": "Count of currently rendered items after `filter` (if any) has been applied.\nIf \"chunking mode\" is enabled, `renderedItemCount` is updated each time a\nset of template instances is rendered."
+                        },
+                        {
+                            "name": "initial-count",
+                            "required": false,
+                            "value": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "description": "When greater than zero, defines an initial count of template instances\nto render after setting the `items` array, before the next paint, and\nputs the `dom-repeat` into \"chunking mode\".  The remaining items (and\nany future items as a result of pushing onto the array) will be created\nand rendered incrementally at each animation frame thereof until all\ninstances have been rendered."
+                        },
+                        {
+                            "name": "target-framerate",
+                            "required": false,
+                            "value": {
+                                "type": "number",
+                                "required": true,
+                                "default": "20"
+                            },
+                            "description": "When `initialCount` is used, this property defines a frame rate (in\nfps) to target by throttling the number of instances rendered each\nframe to not exceed the budget for the target frame rate.  The\nframerate is effectively the number of `requestAnimationFrame`s that\nit tries to allow to actually fire in a given second. It does this\nby measuring the time between `rAF`s and continuously adjusting the\nnumber of items created each `rAF` to maintain the target framerate.\nSetting this to a higher number allows lower latency and higher\nthroughput for event handlers and other tasks, but results in a\nlonger time for the remaining items to complete rendering."
+                        },
+                        {
+                            "name": "_target-frame-time",
+                            "required": false,
+                            "value": {
+                                "type": "number",
+                                "required": true
+                            }
+                        },
+                        {
+                            "name": "notify-dom-change",
+                            "required": false,
+                            "value": {
+                                "type": "boolean",
+                                "required": false
+                            },
+                            "description": "When the global `suppressTemplateNotifications` setting is used, setting\n`notifyDomChange: true` will enable firing `dom-change` events on this\nelement."
+                        },
+                        {
+                            "name": "reuse-chunked-instances",
+                            "required": false,
+                            "value": {
+                                "type": "boolean",
+                                "required": false
+                            },
+                            "description": "When chunking is enabled via `initialCount` and the `items` array is\nset to a new array, this flag controls whether the previously rendered\ninstances are reused or not.\n\nWhen `true`, any previously rendered template instances are updated in\nplace to their new item values synchronously in one shot, and then any\nfurther items (if any) are chunked out.  When `false`, the list is\nreturned back to its `initialCount` (any instances over the initial\ncount are discarded) and the remainder of the list is chunked back in.\nSet this to `true` to avoid re-creating the list and losing scroll\nposition, although note that when changing the list to completely\ndifferent data the render thread will be blocked until all existing\ninstances are updated to their new data."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "items",
+                                "required": false,
+                                "value": {
+                                    "type": "array",
+                                    "required": true
+                                },
+                                "description": "An array containing items determining how many instances of the template\nto stamp and that that each template instance should bind to."
+                            },
+                            {
+                                "name": "as",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true,
+                                    "default": "\"item\""
+                                },
+                                "description": "The name of the variable to add to the binding scope for the array\nelement associated with a given template instance."
+                            },
+                            {
+                                "name": "indexAs",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true,
+                                    "default": "\"index\""
+                                },
+                                "description": "The name of the variable to add to the binding scope with the index\nof the instance in the sorted and filtered list of rendered items.\nNote, for the index in the `this.items` array, use the value of the\n`itemsIndexAs` property."
+                            },
+                            {
+                                "name": "itemsIndexAs",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true,
+                                    "default": "\"itemsIndex\""
+                                },
+                                "description": "The name of the variable to add to the binding scope with the index\nof the instance in the `this.items` array. Note, for the index of\nthis instance in the sorted and filtered list of rendered items,\nuse the value of the `indexAs` property."
+                            },
+                            {
+                                "name": "sort",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true
+                                },
+                                "description": "A function that should determine the sort order of the items.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.sort`.\nUsing a sort function has no effect on the underlying `items` array."
+                            },
+                            {
+                                "name": "filter",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true
+                                },
+                                "description": "A function that can be used to filter items out of the view.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.filter`.\nUsing a filter function has no effect on the underlying `items` array."
+                            },
+                            {
+                                "name": "observe",
+                                "required": false,
+                                "value": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "description": "When using a `filter` or `sort` function, the `observe` property\nshould be set to a space-separated list of the names of item\nsub-fields that should trigger a re-sort or re-filter when changed.\nThese should generally be fields of `item` that the sort or filter\nfunction depends on."
+                            },
+                            {
+                                "name": "delay",
+                                "required": false,
+                                "value": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "description": "When using a `filter` or `sort` function, the `delay` property\ndetermines a debounce time in ms after a change to observed item\nproperties that must pass before the filter or sort is re-run.\nThis is useful in rate-limiting shuffling of the view when\nitem changes may be frequent."
+                            },
+                            {
+                                "name": "renderedItemCount",
+                                "required": false,
+                                "value": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "description": "Count of currently rendered items after `filter` (if any) has been applied.\nIf \"chunking mode\" is enabled, `renderedItemCount` is updated each time a\nset of template instances is rendered."
+                            },
+                            {
+                                "name": "initialCount",
+                                "required": false,
+                                "value": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "description": "When greater than zero, defines an initial count of template instances\nto render after setting the `items` array, before the next paint, and\nputs the `dom-repeat` into \"chunking mode\".  The remaining items (and\nany future items as a result of pushing onto the array) will be created\nand rendered incrementally at each animation frame thereof until all\ninstances have been rendered."
+                            },
+                            {
+                                "name": "targetFramerate",
+                                "required": false,
+                                "value": {
+                                    "type": "number",
+                                    "required": true,
+                                    "default": "20"
+                                },
+                                "description": "When `initialCount` is used, this property defines a frame rate (in\nfps) to target by throttling the number of instances rendered each\nframe to not exceed the budget for the target frame rate.  The\nframerate is effectively the number of `requestAnimationFrame`s that\nit tries to allow to actually fire in a given second. It does this\nby measuring the time between `rAF`s and continuously adjusting the\nnumber of items created each `rAF` to maintain the target framerate.\nSetting this to a higher number allows lower latency and higher\nthroughput for event handlers and other tasks, but results in a\nlonger time for the remaining items to complete rendering."
+                            },
+                            {
+                                "name": "_targetFrameTime",
+                                "required": false,
+                                "value": {
+                                    "type": "number",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "notifyDomChange",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true
+                                },
+                                "description": "When the global `suppressTemplateNotifications` setting is used, setting\n`notifyDomChange: true` will enable firing `dom-change` events on this\nelement."
+                            },
+                            {
+                                "name": "reuseChunkedInstances",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true
+                                },
+                                "description": "When chunking is enabled via `initialCount` and the `items` array is\nset to a new array, this flag controls whether the previously rendered\ninstances are reused or not.\n\nWhen `true`, any previously rendered template instances are updated in\nplace to their new item values synchronously in one shot, and then any\nfurther items (if any) are chunked out.  When `false`, the list is\nreturned back to its `initialCount` (any instances over the initial\ncount are discarded) and the remainder of the list is chunked back in.\nSet this to `true` to avoid re-creating the list and losing scroll\nposition, although note that when changing the list to completely\ndifferent data the render thread will be blocked until all existing\ninstances are updated to their new data."
+                            },
+                            {
+                                "name": "__instances",
+                                "required": false,
+                                "value": {
+                                    "type": "never[]",
+                                    "required": true,
+                                    "default": "[]"
+                                }
+                            },
+                            {
+                                "name": "__renderDebouncer",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__itemsIdxToInstIdx",
+                                "required": false,
+                                "value": {
+                                    "type": "object",
+                                    "required": true,
+                                    "default": "{}"
+                                }
+                            },
+                            {
+                                "name": "__chunkCount",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__renderStartTime",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__itemsArrayChanged",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": "false"
+                                }
+                            },
+                            {
+                                "name": "__shouldMeasureChunk",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": "false"
+                                }
+                            },
+                            {
+                                "name": "__shouldContinueChunking",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": "false"
+                                }
+                            },
+                            {
+                                "name": "__chunkingId",
+                                "required": false,
+                                "value": {
+                                    "type": "number",
+                                    "required": true,
+                                    "default": "0"
+                                }
+                            },
+                            {
+                                "name": "__sortFn",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__filterFn",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__observePaths",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__ctor",
+                                "required": false,
+                                "value": {
+                                    "type": "?function(new:TemplateInstanceBase, Object=)",
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "__isDetached",
+                                "required": false,
+                                "value": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "default": "true"
+                                }
+                            },
+                            {
+                                "name": "template",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "null"
+                                }
+                            },
+                            {
+                                "name": "mutableData",
+                                "required": false,
+                                "value": {
+                                    "type": [
+                                        "boolean",
+                                        "null",
+                                        "undefined"
+                                    ],
+                                    "required": true
+                                },
+                                "description": "Instance-level flag for configuring the dirty-checking strategy\nfor this element.  When true, Objects and Arrays will skip dirty\nchecking, otherwise strict equality checking will be used."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "dom-change"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "",
+                    "source": {
+                        "module": "@polymer/polymer/lib/utils/templatize.js",
+                        "symbol": "TemplateInstanceBase"
+                    },
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "parentModel",
+                                "required": false,
+                                "value": {
+                                    "type": "Polymer_PropertyEffects",
+                                    "required": true
+                                },
+                                "description": "Find the parent model of this template instance.  The parent model\nis either another templatize instance that had option `parentModel: true`,\nor else the host element."
+                            },
+                            {
+                                "name": "root",
+                                "required": false,
+                                "value": {
+                                    "type": "!StampedTemplate",
+                                    "required": true
+                                }
+                            },
+                            {
+                                "name": "children",
+                                "required": false,
+                                "value": {
+                                    "type": [],
+                                    "required": true,
+                                    "default": "[]"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "css": {
+            "properties": []
+        }
+    }
+}

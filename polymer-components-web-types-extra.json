@@ -1,0 +1,391 @@
+{
+    "$schema": "http://json.schemastore.org/web-types",
+    "name": "polymer-components-web-types-extra",
+    "version": "0.1.0",
+    "framework": "@polymer/polymer",
+    "default-icon": "icon/polymer.png",
+    "description-markup": "markdown",
+    "contributions": {
+        "html": {
+            "elements": [
+                {
+                    "name": "dom-if",
+                    "description": "The \"legacy\" implementation of `dom-if`, implemented using `Templatizer`.\n\nIn this version, `this.__instance` is the `TemplateInstance` returned\nfrom the templatized constructor.",
+                    "source": {
+                        "module": "@polymer/polymer/lib/elements/dom-if.js",
+                        "symbol": "DomIf"
+                    },
+                    "attributes": [
+                        {
+                            "name": "if",
+                            "value": {
+                                "type": [
+                                    "boolean"
+                                ],
+                                "required": false
+                            },
+                            "description": "Fired whenever DOM is added or removed/hidden by this template (by\ndefault, rendering occurs lazily).  To force immediate rendering, call\n`render`."
+                        },
+                        {
+                            "name": "restamp",
+                            "value": {
+                                "type": [
+                                    "boolean"
+                                ],
+                                "required": false
+                            },
+                            "description": "When true, elements will be removed from DOM and discarded when `if`\nbecomes false and re-created and added back to the DOM when `if`\nbecomes true.  By default, stamped elements will be hidden but left\nin the DOM when `if` becomes false, which is generally results\nin better performance."
+                        },
+                        {
+                            "name": "notify-dom-change",
+                            "value": {
+                                "type": [
+                                    "boolean"
+                                ],
+                                "required": false
+                            },
+                            "description": "When the global `suppressTemplateNotifications` setting is used, setting\n`notifyDomChange: true` will enable firing `dom-change` events on this\nelement."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "if",
+                                "value": {
+                                    "type": [
+                                        "boolean"
+                                    ],
+                                    "required": false
+                                },
+                                "description": "Fired whenever DOM is added or removed/hidden by this template (by\ndefault, rendering occurs lazily).  To force immediate rendering, call\n`render`."
+                            },
+                            {
+                                "name": "restamp",
+                                "value": {
+                                    "type": [
+                                        "boolean"
+                                    ],
+                                    "required": false
+                                },
+                                "description": "When true, elements will be removed from DOM and discarded when `if`\nbecomes false and re-created and added back to the DOM when `if`\nbecomes true.  By default, stamped elements will be hidden but left\nin the DOM when `if` becomes false, which is generally results\nin better performance."
+                            },
+                            {
+                                "name": "notifyDomChange",
+                                "value": {
+                                    "type": [
+                                        "boolean"
+                                    ],
+                                    "required": false
+                                },
+                                "description": "When the global `suppressTemplateNotifications` setting is used, setting\n`notifyDomChange: true` will enable firing `dom-change` events on this\nelement."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "dom-change"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "template",
+                    "attributes": [
+                        {
+                            "name": "is",
+                            "value": {
+                                "kind": "plain",
+                                "required": true,
+                                "type": [
+                                    "dom-if",
+                                    "dom-repeat"
+                                ]
+                            },
+                            "description": "Template type `dom-if` or `dom-repeat`"
+                        },
+                        {
+                            "name": "if",
+                            "value": {
+                                "type": "boolean",
+                                "required": false
+                            },
+                            "description": "Fired whenever DOM is added or removed/hidden by this template (by\ndefault, rendering occurs lazily).  To force immediate rendering, call\n`render`."
+                        },
+                        {
+                            "name": "restamp",
+                            "value": {
+                                "type": "boolean",
+                                "required": false
+                            },
+                            "description": "When true, elements will be removed from DOM and discarded when `if`\nbecomes false and re-created and added back to the DOM when `if`\nbecomes true.  By default, stamped elements will be hidden but left\nin the DOM when `if` becomes false, which is generally results\nin better performance."
+                        },
+                        {
+                            "name": "notify-dom-change",
+                            "value": {
+                                "type": "boolean",
+                                "required": false
+                            },
+                            "description": "When the global `suppressTemplateNotifications` setting is used, setting\n`notifyDomChange: true` will enable firing `dom-change` events on this\nelement."
+                        },
+                        {
+                            "name": "items",
+                            "value": {
+                                "type": "array",
+                                "required": true
+                            },
+                            "description": "An array containing items determining how many instances of the template\nto stamp and that that each template instance should bind to."
+                        },
+                        {
+                            "name": "as",
+                            "value": {
+                                "type": "string",
+                                "required": true,
+                                "default": "\"item\""
+                            },
+                            "description": "The name of the variable to add to the binding scope for the array\nelement associated with a given template instance."
+                        },
+                        {
+                            "name": "index-as",
+                            "value": {
+                                "type": "string",
+                                "required": true,
+                                "default": "\"index\""
+                            },
+                            "description": "The name of the variable to add to the binding scope with the index\nof the instance in the sorted and filtered list of rendered items.\nNote, for the index in the `this.items` array, use the value of the\n`itemsIndexAs` property."
+                        },
+                        {
+                            "name": "items-index-as",
+                            "value": {
+                                "type": "string",
+                                "required": true,
+                                "default": "\"itemsIndex\""
+                            },
+                            "description": "The name of the variable to add to the binding scope with the index\nof the instance in the `this.items` array. Note, for the index of\nthis instance in the sorted and filtered list of rendered items,\nuse the value of the `indexAs` property."
+                        },
+                        {
+                            "name": "sort",
+                            "value": {
+                                "type": [],
+                                "required": true
+                            },
+                            "description": "A function that should determine the sort order of the items.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.sort`.\nUsing a sort function has no effect on the underlying `items` array."
+                        },
+                        {
+                            "name": "filter",
+                            "value": {
+                                "type": [],
+                                "required": true
+                            },
+                            "description": "A function that can be used to filter items out of the view.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.filter`.\nUsing a filter function has no effect on the underlying `items` array."
+                        },
+                        {
+                            "name": "observe",
+                            "value": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "description": "When using a `filter` or `sort` function, the `observe` property\nshould be set to a space-separated list of the names of item\nsub-fields that should trigger a re-sort or re-filter when changed.\nThese should generally be fields of `item` that the sort or filter\nfunction depends on."
+                        },
+                        {
+                            "name": "delay",
+                            "value": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "description": "When using a `filter` or `sort` function, the `delay` property\ndetermines a debounce time in ms after a change to observed item\nproperties that must pass before the filter or sort is re-run.\nThis is useful in rate-limiting shuffling of the view when\nitem changes may be frequent."
+                        },
+                        {
+                            "name": "rendered-item-count",
+                            "value": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "description": "Count of currently rendered items after `filter` (if any) has been applied.\nIf \"chunking mode\" is enabled, `renderedItemCount` is updated each time a\nset of template instances is rendered."
+                        },
+                        {
+                            "name": "initial-count",
+                            "value": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "description": "When greater than zero, defines an initial count of template instances\nto render after setting the `items` array, before the next paint, and\nputs the `dom-repeat` into \"chunking mode\".  The remaining items (and\nany future items as a result of pushing onto the array) will be created\nand rendered incrementally at each animation frame thereof until all\ninstances have been rendered."
+                        },
+                        {
+                            "name": "target-framerate",
+                            "value": {
+                                "type": "number",
+                                "required": true,
+                                "default": "20"
+                            },
+                            "description": "When `initialCount` is used, this property defines a frame rate (in\nfps) to target by throttling the number of instances rendered each\nframe to not exceed the budget for the target frame rate.  The\nframerate is effectively the number of `requestAnimationFrame`s that\nit tries to allow to actually fire in a given second. It does this\nby measuring the time between `rAF`s and continuously adjusting the\nnumber of items created each `rAF` to maintain the target framerate.\nSetting this to a higher number allows lower latency and higher\nthroughput for event handlers and other tasks, but results in a\nlonger time for the remaining items to complete rendering."
+                        },
+                        {
+                            "name": "reuse-chunked-instances",
+                            "value": {
+                                "type": "boolean",
+                                "required": false
+                            },
+                            "description": "When chunking is enabled via `initialCount` and the `items` array is\nset to a new array, this flag controls whether the previously rendered\ninstances are reused or not.\n\nWhen `true`, any previously rendered template instances are updated in\nplace to their new item values synchronously in one shot, and then any\nfurther items (if any) are chunked out.  When `false`, the list is\nreturned back to its `initialCount` (any instances over the initial\ncount are discarded) and the remainder of the list is chunked back in.\nSet this to `true` to avoid re-creating the list and losing scroll\nposition, although note that when changing the list to completely\ndifferent data the render thread will be blocked until all existing\ninstances are updated to their new data."
+                        }
+                    ],
+                    "js": {
+                        "properties": [
+                            {
+                                "name": "if",
+                                "value": {
+                                    "type": "boolean",
+                                    "required": false
+                                },
+                                "description": "Fired whenever DOM is added or removed/hidden by this template (by\ndefault, rendering occurs lazily).  To force immediate rendering, call\n`render`."
+                            },
+                            {
+                                "name": "restamp",
+                                "value": {
+                                    "type": "boolean",
+                                    "required": false
+                                },
+                                "description": "When true, elements will be removed from DOM and discarded when `if`\nbecomes false and re-created and added back to the DOM when `if`\nbecomes true.  By default, stamped elements will be hidden but left\nin the DOM when `if` becomes false, which is generally results\nin better performance."
+                            },
+                            {
+                                "name": "notifyDomChange",
+                                "value": {
+                                    "type": "boolean",
+                                    "required": false
+                                },
+                                "description": "When the global `suppressTemplateNotifications` setting is used, setting\n`notifyDomChange: true` will enable firing `dom-change` events on this\nelement."
+                            },
+                            {
+                                "name": "items",
+                                "value": {
+                                    "type": "array",
+                                    "required": true
+                                },
+                                "description": "An array containing items determining how many instances of the template\nto stamp and that that each template instance should bind to."
+                            },
+                            {
+                                "name": "as",
+                                "value": {
+                                    "type": "string",
+                                    "required": true,
+                                    "default": "\"item\""
+                                },
+                                "description": "The name of the variable to add to the binding scope for the array\nelement associated with a given template instance."
+                            },
+                            {
+                                "name": "indexAs",
+                                "value": {
+                                    "type": "string",
+                                    "required": true,
+                                    "default": "\"index\""
+                                },
+                                "description": "The name of the variable to add to the binding scope with the index\nof the instance in the sorted and filtered list of rendered items.\nNote, for the index in the `this.items` array, use the value of the\n`itemsIndexAs` property."
+                            },
+                            {
+                                "name": "itemsIndexAs",
+                                "value": {
+                                    "type": "string",
+                                    "required": true,
+                                    "default": "\"itemsIndex\""
+                                },
+                                "description": "The name of the variable to add to the binding scope with the index\nof the instance in the `this.items` array. Note, for the index of\nthis instance in the sorted and filtered list of rendered items,\nuse the value of the `indexAs` property."
+                            },
+                            {
+                                "name": "sort",
+                                "value": {
+                                    "type": [],
+                                    "required": true
+                                },
+                                "description": "A function that should determine the sort order of the items.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.sort`.\nUsing a sort function has no effect on the underlying `items` array."
+                            },
+                            {
+                                "name": "filter",
+                                "value": {
+                                    "type": [],
+                                    "required": true
+                                },
+                                "description": "A function that can be used to filter items out of the view.  This\nproperty should either be provided as a string, indicating a method\nname on the element's host, or else be an actual function.  The\nfunction should match the sort function passed to `Array.filter`.\nUsing a filter function has no effect on the underlying `items` array."
+                            },
+                            {
+                                "name": "observe",
+                                "value": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "description": "When using a `filter` or `sort` function, the `observe` property\nshould be set to a space-separated list of the names of item\nsub-fields that should trigger a re-sort or re-filter when changed.\nThese should generally be fields of `item` that the sort or filter\nfunction depends on."
+                            },
+                            {
+                                "name": "delay",
+                                "value": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "description": "When using a `filter` or `sort` function, the `delay` property\ndetermines a debounce time in ms after a change to observed item\nproperties that must pass before the filter or sort is re-run.\nThis is useful in rate-limiting shuffling of the view when\nitem changes may be frequent."
+                            },
+                            {
+                                "name": "renderedItemCount",
+                                "value": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "description": "Count of currently rendered items after `filter` (if any) has been applied.\nIf \"chunking mode\" is enabled, `renderedItemCount` is updated each time a\nset of template instances is rendered."
+                            },
+                            {
+                                "name": "initialCount",
+                                "value": {
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "description": "When greater than zero, defines an initial count of template instances\nto render after setting the `items` array, before the next paint, and\nputs the `dom-repeat` into \"chunking mode\".  The remaining items (and\nany future items as a result of pushing onto the array) will be created\nand rendered incrementally at each animation frame thereof until all\ninstances have been rendered."
+                            },
+                            {
+                                "name": "targetFramerate",
+                                "value": {
+                                    "type": "number",
+                                    "required": true,
+                                    "default": "20"
+                                },
+                                "description": "When `initialCount` is used, this property defines a frame rate (in\nfps) to target by throttling the number of instances rendered each\nframe to not exceed the budget for the target frame rate.  The\nframerate is effectively the number of `requestAnimationFrame`s that\nit tries to allow to actually fire in a given second. It does this\nby measuring the time between `rAF`s and continuously adjusting the\nnumber of items created each `rAF` to maintain the target framerate.\nSetting this to a higher number allows lower latency and higher\nthroughput for event handlers and other tasks, but results in a\nlonger time for the remaining items to complete rendering."
+                            },
+                            {
+                                "name": "reuseChunkedInstances",
+                                "value": {
+                                    "type": "boolean",
+                                    "required": false
+                                },
+                                "description": "When chunking is enabled via `initialCount` and the `items` array is\nset to a new array, this flag controls whether the previously rendered\ninstances are reused or not.\n\nWhen `true`, any previously rendered template instances are updated in\nplace to their new item values synchronously in one shot, and then any\nfurther items (if any) are chunked out.  When `false`, the list is\nreturned back to its `initialCount` (any instances over the initial\ncount are discarded) and the remainder of the list is chunked back in.\nSet this to `true` to avoid re-creating the list and losing scroll\nposition, although note that when changing the list to completely\ndifferent data the render thread will be blocked until all existing\ninstances are updated to their new data."
+                            },
+                            {
+                                "name": "mutableData",
+                                "value": {
+                                    "type": [
+                                        "boolean",
+                                        "null",
+                                        "undefined"
+                                    ],
+                                    "required": false
+                                },
+                                "description": "Instance-level flag for configuring the dirty-checking strategy\nfor this element.  When true, Objects and Arrays will skip dirty\nchecking, otherwise strict equality checking will be used."
+                            }
+                        ],
+                        "events": [
+                            {
+                                "name": "dom-change"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "style",
+                    "attributes": [
+                        {
+                            "name": "include",
+                            "value": {
+                                "type": "string",
+                                "required": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

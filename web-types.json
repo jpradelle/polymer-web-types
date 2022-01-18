@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json.schemastore.org/web-types",
+  "name": "polymer-web-types",
+  "js-types-syntax": "typescript",
+  "version": "0.1.0",
+  "framework": "@polymer/polymer",
+  "framework-config": {
+    "enable-when": {
+      "node-packages": [
+        "@polymer/polymer"
+      ]
+    },
+    "canonical-names": {
+      "/js/properties": "kebab-case"
+    },
+    "name-variants": {
+      "/js/properties": [
+        "kebab-case"
+      ]
+    }
+  },
+  "default-icon": "icon/polymer.png",
+  "contributions": {
+    "html": {
+      "attributes": [
+        {
+          "name": "Event listeners",
+          "description": "Event listeners expression",
+          "doc-url": "https://polymer-library.polymer-project.org/3.0/docs/devguide/events#annotated-listeners",
+          "value": {
+            "kind": "expression",
+            "type": "any",
+            "required": true
+          },
+          "pattern": {
+            "or": [
+              {
+                "items": [
+                  "/html/events",
+                  "/js/events"
+                ],
+                "template": [
+                  "on-",
+                  "#...",
+                  "#item:event name"
+                ],
+                "priority": "normal"
+              },
+              {
+                "template": [
+                  {
+                    "regex": "on-[-a-z0-9]+"
+                  }
+                ],
+                "priority": "lowest"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Properties",
+          "description": "Properties expression",
+          "doc-url": "https://polymer-library.polymer-project.org/3.0/docs/devguide/data-binding#host-property",
+          "value": {
+            "kind": "expression",
+            "type": "any"
+          },
+          "pattern": {
+            "items": "/js/properties",
+            "template": [
+              "#item:property name"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
