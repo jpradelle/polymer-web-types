@@ -3,11 +3,14 @@
   "version": "0.1.2",
   "license": "BSD-3-Clause",
   "scripts": {
-    "web-types": "web-component-analyzer-webtypes 'node_modules/@polymer/polymer/**/*.js' --path-as-absolute --cwd node_modules --discover-node-modules --format webtypes --out-file ./polymer-components-web-types.json --webtypes-config=\"{\\\"name\\\": \\\"polymer-components-web-types\\\", \\\"version\\\": \\\"0.1.0\\\", \\\"framework\\\": \\\"@polymer/polymer\\\", \\\"default-icon\\\": \\\"icon/polymer.png\\\", \\\"description-markup\\\": \\\"markdown\\\"}\""
+    "web-types": "wca-webtypes 'node_modules/@polymer/polymer/**/*.js' --path-as-absolute --cwd node_modules --discover-node-modules --format webtypes --out-file ./polymer-components-web-types.json --webtypes-config=\"{\\\"name\\\": \\\"polymer-components-web-types\\\", \\\"version\\\": \\\"$npm_package_version\\\", \\\"framework\\\": \\\"@polymer/polymer\\\", \\\"default-icon\\\": \\\"icon/polymer.png\\\", \\\"description-markup\\\": \\\"markdown\\\"}\"",
+    "bump": "replace-json-property ./web-types.json version $npm_package_version -s 2 && replace-json-property ./polymer-components-web-types-extra.json version $npm_package_version -s 4",
+    "version": "npm run web-types && npm run bump && git add -A"
   },
   "devDependencies": {
     "@polymer/polymer": "^3.4.1",
-    "web-component-analyzer-webtypes": "^2.0.0"
+    "replace-json-property": "^1.8.0",
+    "web-component-analyzer-webtypes": "^2.0.2"
   },
   "web-types": [
     "./web-types.json",
