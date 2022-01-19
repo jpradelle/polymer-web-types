@@ -3,7 +3,7 @@
   "version": "0.1.2",
   "license": "BSD-3-Clause",
   "scripts": {
-    "web-types": "web-component-analyzer-webtypes 'node_modules/@polymer/polymer/**/*.js' --path-as-absolute --cwd node_modules --discover-node-modules --format webtypes --out-file ./polymer-components-web-types.json --webtypes-config=\"{\\\"name\\\": \\\"polymer-components-web-types\\\", \\\"version\\\": \\\"0.1.0\\\", \\\"framework\\\": \\\"@polymer/polymer\\\", \\\"default-icon\\\": \\\"icon/polymer.svg\\\", \\\"description-markup\\\": \\\"markdown\\\"}\""
+    "web-types": "web-component-analyzer-webtypes 'node_modules/@polymer/polymer/**/*.js' --path-as-absolute --cwd node_modules --discover-node-modules --format webtypes --out-file ./polymer-components-web-types.json --webtypes-config=\"{\\\"name\\\": \\\"polymer-components-web-types\\\", \\\"version\\\": \\\"0.1.0\\\", \\\"framework\\\": \\\"@polymer/polymer\\\", \\\"default-icon\\\": \\\"icon/polymer.png\\\", \\\"description-markup\\\": \\\"markdown\\\"}\""
   },
   "devDependencies": {
     "@polymer/polymer": "^3.4.1",

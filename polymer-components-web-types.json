@@ -3,7 +3,7 @@
     "name": "polymer-components-web-types",
     "version": "0.1.0",
     "framework": "@polymer/polymer",
-    "default-icon": "icon/polymer.svg",
+    "default-icon": "icon/polymer.png",
     "description-markup": "markdown",
     "contributions": {
         "html": {
