@@ -2,6 +2,12 @@
   "name": "polymer-web-types",
   "version": "0.1.3",
   "license": "BSD-3-Clause",
+  "description": "Web-types for PolymerJS",
+  "keywords": ["web-types", "polymer", "completion", "autocompletion"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpradelle/polymer-web-types.git"
+  },
   "scripts": {
     "web-types": "wca-webtypes 'node_modules/@polymer/polymer/**/*.js' --path-as-absolute --cwd node_modules --discover-node-modules --format webtypes --out-file ./polymer-components-web-types.json --webtypes-config=\"{\\\"name\\\": \\\"polymer-components-web-types\\\", \\\"version\\\": \\\"$npm_package_version\\\", \\\"framework\\\": \\\"@polymer/polymer\\\", \\\"default-icon\\\": \\\"icon/polymer.png\\\", \\\"description-markup\\\": \\\"markdown\\\"}\"",
     "bump": "replace-json-property ./web-types.json version $npm_package_version -s 2 && replace-json-property ./polymer-components-web-types-extra.json version $npm_package_version -s 4",
