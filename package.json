@@ -1,6 +1,6 @@
 {
   "name": "polymer-web-types",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "license": "BSD-3-Clause",
   "scripts": {
     "web-types": "wca-webtypes 'node_modules/@polymer/polymer/**/*.js' --path-as-absolute --cwd node_modules --discover-node-modules --format webtypes --out-file ./polymer-components-web-types.json --webtypes-config=\"{\\\"name\\\": \\\"polymer-components-web-types\\\", \\\"version\\\": \\\"$npm_package_version\\\", \\\"framework\\\": \\\"@polymer/polymer\\\", \\\"default-icon\\\": \\\"icon/polymer.png\\\", \\\"description-markup\\\": \\\"markdown\\\"}\"",
