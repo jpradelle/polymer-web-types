@@ -9,14 +9,6 @@
       "node-packages": [
         "@polymer/polymer"
       ]
-    },
-    "canonical-names": {
-      "/js/properties": "kebab-case"
-    },
-    "name-variants": {
-      "/js/properties": [
-        "kebab-case"
-      ]
     }
   },
   "default-icon": "icon/polymer.png",
@@ -35,10 +27,7 @@
           "pattern": {
             "or": [
               {
-                "items": [
-                  "/html/events",
-                  "/js/events"
-                ],
+                "items": "/js/events",
                 "template": [
                   "on-",
                   "#...",
@@ -66,7 +55,18 @@
             "type": "any"
           },
           "pattern": {
-            "items": "/js/properties",
+            "items": {
+              "path": "/js/properties",
+              "name-conversion": {
+                "canonical-names": "kebab-case",
+                "match-names": [
+                  "as-is"
+                ],
+                "name-variants": [
+                  "kebab-case"
+                ]
+              }
+            },
             "template": [
               "#item:property name"
             ]
