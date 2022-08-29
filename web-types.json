@@ -21,13 +21,17 @@
           "doc-url": "https://polymer-library.polymer-project.org/3.0/docs/devguide/events#annotated-listeners",
           "value": {
             "kind": "expression",
-            "type": "any",
+            "type": "string",
             "required": true
           },
+          "virtual": true,
           "pattern": {
             "or": [
               {
-                "items": "/js/events",
+                "items": {
+                  "path": "/js/events",
+                  "includeVirtual": false
+                },
                 "template": [
                   "on-",
                   "#...",
@@ -52,7 +56,7 @@
           "doc-url": "https://polymer-library.polymer-project.org/3.0/docs/devguide/data-binding#host-property",
           "value": {
             "kind": "expression",
-            "type": "any"
+            "type": "string"
           },
           "pattern": {
             "items": {
@@ -69,7 +73,29 @@
             },
             "template": [
               "#item:property name"
-            ]
+            ],
+            "priority": "normal"
+          }
+        },
+        {
+          "name": "Attributes expression",
+          "description": "Attributes expression",
+          "doc-url": "https://polymer-library.polymer-project.org/3.0/docs/devguide/data-binding#anatomy-of-a-data-binding",
+          "value": {
+            "kind": "expression",
+            "type": "string"
+          },
+          "virtual": true,
+          "pattern": {
+            "items": {
+              "path": "/html/attributes",
+              "includeVirtual": false
+            },
+            "template": [
+              "#item:attribute name",
+              "$"
+            ],
+            "priority": "low"
           }
         }
       ]
