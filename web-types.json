@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/web-types",
   "name": "polymer-web-types",
   "js-types-syntax": "typescript",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "framework": "@polymer/polymer",
   "framework-config": {
     "enable-when": {
