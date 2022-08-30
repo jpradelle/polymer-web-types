@@ -95,10 +95,7 @@
                             "value": {
                                 "kind": "plain",
                                 "required": true,
-                                "type": [
-                                    "dom-if",
-                                    "dom-repeat"
-                                ]
+                                "type": "'dom-if' | 'dom-repeat'"
                             },
                             "description": "Template type `dom-if` or `dom-repeat`"
                         },
